@@ -1,11 +1,8 @@
 const { createServer } = require('http');
 const port = 8080;
-const server = createServer();
 
-server.on('request', (request, response) => {
+createServer((request, response) => {
   response.end('hello world');
-});
-
-server.listen(port, e => {
+}).listen(port, e => {
   console.error(e);
 });

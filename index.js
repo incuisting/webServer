@@ -1,16 +1,8 @@
 const { createServer } = require('http')
 
-createServer((request, response) => {
-  switch (request.method) {
-    case 'GET':
-      response.end('get')
-      break
-    case 'POST':
-      response.end('post')
-      break
-    default:
-      response.status = 400
-      response.end('不支持的方法')
-      break
-  }
+createServer((req, res) => {
+  res.writeHeader(200, {
+    'Set-Cookie': ['aa=vv', 'cc=dd']
+  })
+  res.end(`Your cookies are: ${req.headers.cookie}`)
 }).listen(8080)

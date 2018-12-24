@@ -1,15 +1,16 @@
-const { createServer } = require('http');
+const { createServer } = require('http')
 
 createServer((request, response) => {
-  switch (request.url) {
-    case '/':
-      response.end('main');
-      break;
-    case '/about':
-      response.end('about');
-      break;
+  switch (request.method) {
+    case 'GET':
+      response.end('get')
+      break
+    case 'POST':
+      response.end('post')
+      break
     default:
-      response.status = 404;
-      response.end();
+      response.status = 400
+      response.end('不支持的方法')
+      break
   }
-}).listen(8080);
+}).listen(8080)

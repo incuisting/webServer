@@ -1,6 +1,6 @@
-const { createReadStream } = require('fs');
 const { createServer } = require('http');
 
 createServer((request, response) => {
-  createReadStream(__filename).pipe(response);
+  const lan = request.headers['accept-language'];
+  response.end(lan);
 }).listen(8080);

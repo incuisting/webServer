@@ -1,8 +1,15 @@
 const { createServer } = require('http');
 
 createServer((request, response) => {
-  response.writeHead(200, {
-    'content-type': 'application/json',
-  });
-  response.end(JSON.stringify({ a: 1 }));
+  switch (request.url) {
+    case '/':
+      response.end('main');
+      break;
+    case '/about':
+      response.end('about');
+      break;
+    default:
+      response.status = 404;
+      response.end();
+  }
 }).listen(8080);

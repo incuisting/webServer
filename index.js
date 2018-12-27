@@ -1,8 +1,11 @@
-const { createServer } = require('http')
+const { createServer } = require('http');
+const url = require('url');
 
 createServer((req, res) => {
-  res.writeHeader(200, {
-    'Set-Cookie': ['aa=vv', 'cc=dd']
-  })
-  res.end(`Your cookies are: ${req.headers.cookie}`)
-}).listen(8080)
+  const { query } = url.parse(req.url, true);
+  if (query.name) {
+    res.end(query.name);
+  } else {
+    res.end('no name');
+  }
+}).listen(8080);
